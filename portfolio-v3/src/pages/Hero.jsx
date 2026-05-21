@@ -17,9 +17,9 @@ const Hero = () => {
         },
       });
 
-      tl.fromTo(".left", { x: 0 }, { x: 100, duration: 1 }, 0);
+      tl.fromTo(".move-left", { x: 0 }, { x: 100, duration: 1 }, 0);
 
-      tl.fromTo(".right", { x: 0 }, { x: -100, duration: 1 }, 0);
+      tl.fromTo(".move-right", { x: 0 }, { x: -100, duration: 1 }, 0);
 
       gsap.fromTo(
         "#description",
@@ -33,6 +33,67 @@ const Hero = () => {
           y: 0,
         },
       );
+      tl.fromTo(
+        ".move-up",
+        {
+          y: 0,
+        },
+        {
+          y: -100,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.2,
+          opacity: 0,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=500",
+            scrub: 1,
+          },
+        },
+      );
+      tl.fromTo(
+        ".move-left2right",
+        {
+          y: 0,
+        },
+        {
+          y: -100,
+          x: -50,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.2,
+          opacity: 0,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=500",
+            scrub: 1,
+          },
+        },
+      );
+      tl.fromTo(
+        ".move-bottom",
+        {
+          y: 0,
+        },
+        {
+          y: 100,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.2,
+          opacity: 0,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=500",
+            scrub: 1,
+          },
+        },
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -43,11 +104,11 @@ const Hero = () => {
       ref={containerRef}
       className="max-w-5xl mx-auto h-screen px-6 py-12 relative flex flex-col space-y-8 justify-center   "
     >
-      <h1 className="uppercase   font-bold  leading-none tracking-tight">
-        <div className="flex flex-col font-display lg:text-9xl text-6xl name">
-          <span className="left inline-block">JAN NOEL</span>
-          <span className="right inline-block">Sablaon</span>
-          <span className="left inline-block">PAED</span>
+      <h1 className="uppercase   font-bold  leading-none tracking-tight ">
+        <div className="flex flex-col font-display lg:text-9xl text-6xl name ">
+          <span className="move-left inline-block ">JAN NOEL</span>
+          <span className="move-right inline-block ">Sablaon</span>
+          <span className="move-left inline-block ">PAED</span>
         </div>
       </h1>{" "}
       {/* description */}
@@ -100,6 +161,29 @@ const Hero = () => {
             <FaTwitter className="lg:size-6 size-4" />
           </a>
         </div>
+      </div>
+      <div className="absolute right-8 top-6 move-up z-10 hidden lg:block">
+        <img
+          src="/images/hero-profile-grad.jpg"
+          alt=""
+          className="h-55 w-40 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer rotate-2 pointer-events-auto"
+        />
+      </div>
+      {/* Mid: overlaps, slight negative tilt */}
+      <div className="absolute right-55 top-22.5 move-left2right z-20 hidden lg:block">
+        <img
+          src="/images/hero-profile-1.jpg"
+          alt=""
+          className="h-45 w-32.5 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer `-rotate-[1.5deg]`"
+        />
+      </div>
+      {/* Bottom-right anchor */}
+      <div className="absolute right-14 bottom-42.5 move-bottom z-10 hidden lg:block">
+        <img
+          src="/images/hero-profile-2.jpg"
+          alt=""
+          className="h-52.5 w-42.5 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer rotate-3 pointer-events-auto"
+        />
       </div>
     </section>
   );

@@ -1,9 +1,36 @@
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const Techstack = () => {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".fade-in",
+        {
+          y: 60,
+          opacity: 0,
+        },
+        {
+          duration: 1,
+          y: 0,
+          opacity: 1,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 70%",
+          },
+        },
+      );
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
   return (
     <section
       id="techstack"
+      ref={containerRef}
       aria-labelledby="techstack-heading"
       className="min-h-screen max-w-7xl mx-auto py-20 px-6"
     >
@@ -11,37 +38,37 @@ const Techstack = () => {
         {/* Left Container */}
 
         <div className="flex flex-col space-y-8 p-6">
-          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs">
+          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs fade-in">
             Philosophy
           </span>
           <h2
             id="techstack-heading"
-            className="font-display text-6xl lg:text-7xl tracking-tighter leading-[0.85] max-w-lg uppercase"
+            className="font-display text-6xl lg:text-7xl tracking-tighter leading-[0.85] max-w-lg uppercase fade-in"
           >
             Crafting Scalable, Impactful Web Applications.
           </h2>
 
-          <div className="h-[2px] w-32 bg-gray-800" aria-hidden="true"></div>
+          <div className="h-0.5 w-32 bg-gray-800" aria-hidden="true"></div>
 
-          <p className="lg:text-lg text-sm font-semibold text-gray-600 max-w-[45ch] leading-relaxed">
+          <p className="lg:text-lg text-sm font-semibold text-gray-600 max-w-[45ch] leading-relaxed fade-in">
             Development is not just about writing clean code; it's about telling
             a brand's story and providing robust solutions through memorable
             digital experiences.
           </p>
-          <span className="font-bold tracking-widest text-sm text-gray-900">
+          <span className="font-bold tracking-widest text-sm text-gray-900 fade-in uppercase">
             FULL-STACK MERN ARCHITECTURE
           </span>
         </div>
 
         {/* Right Container */}
         <div className=" min-h-100 p-6">
-          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs mb-6 ">
+          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs mb-6 fade-in">
             Tech Stack / Tools
           </span>
-          <div className="flex flex-col gap-2 w-full ">
+          <div className="flex flex-col gap-2 w-full fade-in ">
             <div className="flex gap-2">
               {/* Frontend */}
-              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6 fade-in">
                 <h3 className="font-display  lg:text-xl text-lg font-bold tracking-wider text-gray-900">
                   FRONTEND & UI
                 </h3>
@@ -65,7 +92,7 @@ const Techstack = () => {
                 </ul>
               </div>
               {/* Backend */}
-              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6 fade-in">
                 <h3 className="font-display  lg:text-xl text-lg font-bold tracking-wider text-gray-900">
                   BACKEND & DATABASE
                 </h3>
@@ -92,7 +119,7 @@ const Techstack = () => {
               </div>
             </div>
             {/* Architecture tools */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-3 fade-in">
               <h3 className="font-display lg:text-xl text-lg tracking-wider font-bold">
                 ARCHITECTURE TOOLS
               </h3>

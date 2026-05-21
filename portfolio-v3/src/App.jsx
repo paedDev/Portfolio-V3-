@@ -10,6 +10,7 @@ const App = () => {
 
       <Hero />
       <Techstack />
+      <Hero />
     </main>
   );
 };
