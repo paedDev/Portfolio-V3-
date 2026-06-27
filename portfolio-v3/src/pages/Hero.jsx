@@ -174,7 +174,7 @@ const Hero = () => {
         <img
           src="/images/hero-profile-1.jpg"
           alt=""
-          className="h-45 w-32.5 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer `-rotate-[1.5deg]`"
+          className="h-45 w-32.5 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer `-rotate-[1.5deg]` "
         />
       </div>
       {/* Bottom-right anchor */}
