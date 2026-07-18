@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import GithubCalendar from "@/components/GithubCalendar";
 gsap.registerPlugin(ScrollTrigger);
 const Techstack = () => {
   const containerRef = useRef(null);
@@ -146,6 +148,10 @@ const Techstack = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <GithubCalendar />
       </div>
     </section>
   );
