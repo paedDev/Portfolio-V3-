@@ -10,8 +10,8 @@ const Navbar = () => {
       >
         {/* Left Item */}
         <a
-          href="#projects"
-          aria-label="Projects"
+          href="#works"
+          aria-label="works"
           className="flex items-center space-x-2 px-4 sm:px-6 py-2 text-xs text-gray-500 transition-colors hover:bg-black rounded-full hover:text-white duration-300"
         >
           <Code size={14} />

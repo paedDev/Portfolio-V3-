@@ -5,10 +5,13 @@ import Techstack from "./pages/Techstack";
 import LogoLoop from "./pages/LogoLoop";
 import Experience from "./pages/Experience";
 import Works from "./pages/Works";
+import Services from "./pages/Services";
+import Footer from "./components/Footer";
+import PickACardCTA from "./pages/PickACardCTA";
 
 const App = () => {
   return (
-    <main className="bg-white relative">
+    <main className="relative w-full max-w-[100vw] overflow-x-hidden">
       <Navbar />
       <Hero />
       <Techstack />
@@ -25,6 +28,11 @@ const App = () => {
       <div className="relative z-20 -mt-[100vh] bg-white shadow-[0_-20px_50px_rgba(0,0,0,0.5)] rounded-t-[80px]">
         <Works />
       </div>
+
+      {/* Layer 3 : Services */}
+      <Services />
+      <PickACardCTA />
+      <Footer />
     </main>
   );
 };

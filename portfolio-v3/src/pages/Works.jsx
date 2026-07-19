@@ -4,13 +4,13 @@ import { GoArrowUpRight } from "react-icons/go";
 const Works = () => {
   const projects = [
     {
-      image: "placeholder.jpg",
-      title: "Project Title 1",
+      image: "../images/ProjectImages/Mojito.png",
+      title: "MOJITO",
       description:
         "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       skills: ["React", "Tailwind CSS", "GSAP"],
       button: "View Live",
-      Link: "http://example.com",
+      Link: "https://mojito-website-pexs3h5gj-jnpaeds-projects-63050fe3.vercel.app/",
     },
     {
       image: "placeholder.jpg",
@@ -78,12 +78,13 @@ const Works = () => {
             className="grid lg:grid-cols-5 grid-cols-1 gap-8 mt-12 max-w-7xl mx-auto"
           >
             <div
-              className={`order-1 lg:col-span-3 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}
+              className={`order-1 lg:col-span-3 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"} relative`}
             >
               <img
                 src={project.image}
                 alt="Project"
-                className="h-100 w-6xl border border-gray-300 rounded-lg shadow-lg hover:scale-105 transition-transform duration-500 bg-center bg-contain bg-no-repeat  "
+                // CHANGED: object-contain to object-cover. Added object-center to keep the focus in the middle.
+                className="relative w-full h-[60vh] lg:h-[80vh] object-cover object-center border border-gray-300 rounded-lg shadow-lg transition-transform duration-500"
               />
             </div>
             {/* Description Right */}
