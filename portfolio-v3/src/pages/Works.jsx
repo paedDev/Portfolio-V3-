@@ -13,13 +13,20 @@ const Works = () => {
       Link: "https://mojito-website-pexs3h5gj-jnpaeds-projects-63050fe3.vercel.app/",
     },
     {
-      image: "placeholder.jpg",
-      title: "Project Title 2",
+      image: "../images/ProjectImages/PetitionSystem2.png",
+      title: "Petition System",
       description:
         "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      skills: ["React", "Tailwind CSS", "GSAP"],
+      skills: [
+        "React",
+        "Tailwind CSS",
+        "GSAP",
+        "Node.Js",
+        "Express",
+        "MongoDB",
+      ],
       button: "View Live",
-      Link: "http://example.com",
+      Link: "https://petition-system-in-school-nnoc.vercel.app/",
     },
     {
       image: "placeholder.jpg",
@@ -83,8 +90,7 @@ const Works = () => {
               <img
                 src={project.image}
                 alt="Project"
-                // CHANGED: object-contain to object-cover. Added object-center to keep the focus in the middle.
-                className="relative w-full h-[60vh] lg:h-[80vh] object-cover object-center border border-gray-300 rounded-lg shadow-lg transition-transform duration-500"
+                className="relative w-full h-[60vh] lg:h-[80vh] object-cover object-center border border-gray-300 rounded-lg shadow-lg transition-transform duration-500 cursor-pointer hover:scale-105"
               />
             </div>
             {/* Description Right */}
