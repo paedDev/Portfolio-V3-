@@ -4,8 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import GithubCalendar from "@/components/GithubCalendar";
 gsap.registerPlugin(ScrollTrigger);
+
 const Techstack = () => {
   const containerRef = useRef(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -29,30 +31,35 @@ const Techstack = () => {
     }, containerRef);
     return () => ctx.revert();
   }, []);
+
   return (
     <section
       id="techstack"
       ref={containerRef}
       aria-labelledby="techstack-heading"
-      className="min-h-screen max-w-7xl mx-auto py-20 px-6"
+      className="min-h-screen max-w-7xl mx-auto py-12 md:py-20 px-4 sm:px-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 p-6">
+      {/* Reduced gap on mobile, expanded on desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         {/* Left Container */}
-
-        <div className="flex flex-col space-y-8 p-6">
+        <div className="flex flex-col space-y-6 md:space-y-8">
           <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs fade-in">
             Philosophy
           </span>
+          {/* Scaled text for mobile (text-5xl) up to desktop (lg:text-7xl) */}
           <h2
             id="techstack-heading"
-            className="font-display text-6xl lg:text-7xl tracking-tighter leading-[0.85] max-w-lg uppercase fade-in"
+            className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.85] max-w-lg uppercase fade-in"
           >
             Crafting Scalable, Impactful Web Applications.
           </h2>
 
-          <div className="h-0.5 w-32 bg-gray-800" aria-hidden="true"></div>
+          <div
+            className="h-0.5 w-32 bg-gray-800 fade-in"
+            aria-hidden="true"
+          ></div>
 
-          <p className="lg:text-lg text-sm font-semibold text-gray-600 max-w-[45ch] leading-relaxed fade-in">
+          <p className="text-base md:text-lg font-semibold text-gray-600 max-w-[45ch] leading-relaxed fade-in">
             Development is not just about writing clean code; it's about telling
             a brand's story and providing robust solutions through memorable
             digital experiences.
@@ -63,18 +70,19 @@ const Techstack = () => {
         </div>
 
         {/* Right Container */}
-        <div className=" min-h-100 p-6">
-          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs mb-6 fade-in">
+        <div className="flex flex-col w-full">
+          <span className="block uppercase text-gray-500 font-bold tracking-widest text-xs mb-4 md:mb-6 fade-in">
             Tech Stack / Tools
           </span>
-          <div className="flex flex-col gap-2 w-full fade-in ">
-            <div className="flex gap-2">
+
+          <div className="flex flex-col gap-4 w-full fade-in">
+            {/* Changed from 'flex gap-2' to 'flex-col md:flex-row gap-4' to stack on mobile */}
+            <div className="flex flex-col md:flex-row gap-4">
               {/* Frontend */}
-              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6 fade-in">
-                <h3 className="font-display  lg:text-xl text-lg font-bold tracking-wider text-gray-900">
+              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-5 md:p-6 fade-in">
+                <h3 className="font-display text-lg lg:text-xl font-bold tracking-wider text-gray-900">
                   FRONTEND & UI
                 </h3>
-
                 <ul className="flex flex-wrap gap-2">
                   <li className="inline-block rounded-sm border border-gray-300 px-3 py-1 text-xs font-bold text-gray-700">
                     REACT
@@ -93,9 +101,10 @@ const Techstack = () => {
                   </li>
                 </ul>
               </div>
+
               {/* Backend */}
-              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-6 fade-in">
-                <h3 className="font-display  lg:text-xl text-lg font-bold tracking-wider text-gray-900">
+              <div className="flex-1 space-y-4 bg-gray-50 border border-gray-200 rounded-lg p-5 md:p-6 fade-in">
+                <h3 className="font-display text-lg lg:text-xl font-bold tracking-wider text-gray-900">
                   BACKEND & DATABASE
                 </h3>
                 <ul className="flex flex-wrap gap-2">
@@ -120,9 +129,10 @@ const Techstack = () => {
                 </ul>
               </div>
             </div>
+
             {/* Architecture tools */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-3 fade-in">
-              <h3 className="font-display lg:text-xl text-lg tracking-wider font-bold">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 md:p-6 space-y-3 fade-in">
+              <h3 className="font-display text-lg lg:text-xl tracking-wider font-bold">
                 ARCHITECTURE TOOLS
               </h3>
               <ul className="flex flex-wrap gap-2">
@@ -150,7 +160,7 @@ const Techstack = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mt-12 md:mt-16 w-full overflow-x-auto fade-in">
         <GithubCalendar />
       </div>
     </section>
