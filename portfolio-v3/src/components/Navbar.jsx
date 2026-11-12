@@ -11,7 +11,7 @@ const Navbar = () => {
         {/* Left Item */}
         <a
           href="#works"
-          aria-label="works"
+          aria-label="Projects"
           className="flex items-center space-x-2 px-4 sm:px-6 py-2 text-xs text-gray-500 transition-colors hover:bg-black rounded-full hover:text-white duration-300"
         >
           <Code size={14} />
@@ -22,7 +22,8 @@ const Navbar = () => {
 
         {/* Center Item */}
         <a
-          href="#resume"
+          href="/Resume_Paed.pdf"
+          download="Resume_Paed.pdf"
           aria-label="Resume"
           className="flex items-center space-x-2 px-4 sm:px-6 py-2 text-xs text-gray-500 transition-colors hover:bg-black rounded-full hover:text-white duration-300"
         >

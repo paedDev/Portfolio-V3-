@@ -13,7 +13,8 @@ const PickACardCTA = () => {
       rotate: "-rotate-12",
       translate: "-translate-x-[120px] lg:-translate-x-[180px] translate-y-8",
       zIndex: "z-10",
-      href: "mailto:your.email@example.com",
+      // Replace with your real email (the ?subject= part is optional)
+      href: "mailto:jannoelpaed17@gmail.com?subject=Portfolio%20Inquiry",
     },
     {
       id: 2,
@@ -24,7 +25,7 @@ const PickACardCTA = () => {
       rotate: "-rotate-4",
       translate: "-translate-x-[40px] lg:-translate-x-[60px] translate-y-2",
       zIndex: "z-20",
-      href: "#",
+      href: "https://github.com/paedDev",
     },
     {
       id: 3,
@@ -35,32 +36,31 @@ const PickACardCTA = () => {
       rotate: "rotate-4",
       translate: "translate-x-[40px] lg:translate-x-[60px] translate-y-2",
       zIndex: "z-30",
-      href: "#",
+      href: "https://www.linkedin.com/in/jan-noel-s-paed-paed-115358347/",
     },
     {
       id: 4,
       title: "Resume",
       icon: <FileText size={48} strokeWidth={1.5} />,
-      // Deep Navy/Dark Blue gradient
       bgColor: "bg-gradient-to-br from-[#14213d] to-[#000000]",
       textColor: "text-white",
       rotate: "rotate-12",
       translate: "translate-x-[120px] lg:translate-x-[180px] translate-y-8",
       zIndex: "z-40",
-      href: "#resume",
+      // Must match the filename inside your project's public/ folder
+      href: "/resume.pdf",
+      download: "Resume_Paed.pdf",
     },
   ];
 
   return (
     <section className="relative w-full py-32 bg-[#0a0a0a] overflow-hidden flex flex-col items-center justify-center border-t border-gray-900">
       {/* Header Text */}
-
       <div className="text-center z-50 mb-16 px-4">
         <h2 className="text-5xl md:text-7xl font-display font-bold text-white mb-4 tracking-tight">
           Experience the Magic
         </h2>
         <div className="flex items-center justify-center gap-2 text-gray-400 italic font-medium">
-          {/* A simple curved arrow using SVG */}
           <svg
             width="24"
             height="24"
@@ -77,32 +77,38 @@ const PickACardCTA = () => {
           <span>Pick a card</span>
         </div>
       </div>
+
       {/* Cards Container */}
       <div className="relative flex justify-center items-center h-[350px] lg:h-[450px] w-full max-w-4xl mx-auto">
-        {cards.map((card) => (
-          <a
-            href={card.href}
-            key={card.id}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`
-              absolute w-48 h-64 lg:w-64 lg:h-80 rounded-2xl lg:rounded-3xl shadow-2xl 
-              flex flex-col items-center justify-center cursor-pointer 
-              origin-bottom 
-              transition-all duration-500 ease-out 
-              hover:-translate-y-16 hover:rotate-0 hover:scale-110 hover:z-50 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)]
-              ${card.bgColor} ${card.rotate} ${card.translate} ${card.zIndex} ${card.textColor}
-            `}
-          >
-            <div className="absolute inset-0 rounded-2xl lg:rounded-3xl border border-white/30 bg-gradient-to-tr from-white/5 to-white/40 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col items-center gap-4 drop-shadow-md">
-              {card.icon}
-              <span className="font-bold font-display uppercase tracking-widest text-sm lg:text-lg">
-                {card.title}
-              </span>
-            </div>
-          </a>
-        ))}
+        {cards.map((card) => {
+          const isExternal = card.href.startsWith("http");
+
+          return (
+            <a
+              key={card.id}
+              href={card.href}
+              download={card.download}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className={`
+                absolute w-48 h-64 lg:w-64 lg:h-80 rounded-2xl lg:rounded-3xl shadow-2xl 
+                flex flex-col items-center justify-center cursor-pointer 
+                origin-bottom 
+                transition-all duration-500 ease-out 
+                hover:-translate-y-16 hover:rotate-0 hover:scale-110 hover:z-50 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)]
+                ${card.bgColor} ${card.rotate} ${card.translate} ${card.zIndex} ${card.textColor}
+              `}
+            >
+              <div className="absolute inset-0 rounded-2xl lg:rounded-3xl border border-white/30 bg-gradient-to-tr from-white/5 to-white/40 pointer-events-none"></div>
+              <div className="relative z-10 flex flex-col items-center gap-4 drop-shadow-md">
+                {card.icon}
+                <span className="font-bold font-display uppercase tracking-widest text-sm lg:text-lg">
+                  {card.title}
+                </span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

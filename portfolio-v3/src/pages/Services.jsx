@@ -2,6 +2,7 @@ import React from "react";
 import { FiLayout, FiDatabase, FiCpu, FiShare2 } from "react-icons/fi";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { BsArrowRight } from "react-icons/bs";
+
 const Services = () => {
   const services = [
     {
@@ -33,15 +34,16 @@ const Services = () => {
       stack: ["Node.js", "Express", "RESTful APIs", "JWT"],
     },
   ];
+
   return (
-    <div className="flex flex-col  items-center min-h-screen w-full max-w-full mx-auto px-20 overflow-hidden py-30 relative">
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between w-full max-w-7xl mx-auto gap-12 lg:gap-20">
+    <div className="flex flex-col items-center min-h-screen w-full max-w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden py-16 lg:py-30 relative">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between w-full max-w-7xl mx-auto gap-6 lg:gap-20">
         {/* Left side Header */}
         <div className="flex-1">
           <h1 className="uppercase text-gray-500 font-bold tracking-widest text-xs mb-4">
             My Services
           </h1>
-          <p className="font-display text-6xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-none text-gray-900 ">
+          <p className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-none text-gray-900">
             CORE <span className="block">CAPABILITIES</span>
           </p>
         </div>
@@ -54,7 +56,7 @@ const Services = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row lg:items-start justify-between w-full max-w-7xl mx-auto gap-12 lg:gap-20 mt-12 lg:mt-20 mb-8">
+      <div className="flex flex-col lg:flex-row lg:items-start justify-between w-full max-w-7xl mx-auto gap-8 lg:gap-20 mt-10 lg:mt-20 mb-8">
         <div className="max-w-6xl mx-auto w-full text-gray-600">
           <div className="hidden lg:grid grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300">
             <div className="p-10 text-3xl"></div>
@@ -67,30 +69,29 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative flex flex-col lg:grid lg:grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300 cursor-pointer overflow-hidden z-10"
+              className="group relative flex flex-col lg:grid lg:grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300 cursor-pointer overflow-hidden z-10 py-4 lg:py-0"
             >
               <div className="absolute inset-0 bg-gray-50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out -z-10"></div>
 
               <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gray-900 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-50"></div>
 
-              <div className="p-10 text-3xl flex items-center group-hover:bg-gray-900 group-hover:text-white transition-colors duration-500 ease-in">
+              <div className="px-4 pt-4 pb-2 lg:p-10 text-3xl flex items-center w-fit lg:w-auto rounded-lg lg:rounded-none group-hover:bg-gray-900 group-hover:text-white transition-colors duration-500 ease-in">
                 {service.icons}
               </div>
 
-              <div className="p-10 font-display lg:text-3xl text-gray-900 text-2xl font-bold tracking-tight flex items-center">
+              <div className="px-4 py-2 lg:p-10 font-display text-xl sm:text-2xl lg:text-3xl text-gray-900 font-bold tracking-tight flex items-center">
                 {service.title}
               </div>
 
-              <div className="p-10 text-gray-500 text-sm font-bold flex items-center group-hover:text-gray-700 transition-colors duration-500 ease-in">
+              <div className="px-4 py-2 lg:p-10 text-gray-500 text-sm font-bold flex items-center group-hover:text-gray-700 transition-colors duration-500 ease-in">
                 {service.description}
               </div>
 
-              <div className="p-10 flex flex-wrap gap-2 items-center">
+              <div className="px-4 pt-3 pb-4 lg:p-10 flex flex-wrap gap-2 items-center">
                 {service.stack.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-4 py-2 group-hover:border-gray-900 group-hover:bg-gray-900 group-hover:text-white border border-gray-300 rounded-md bg-white text-gray-600  uppercase text-xs duration-500 transition-all ease-in font-bold tracking-wide
-                    "
+                    className="px-3 py-1.5 lg:px-4 lg:py-2 group-hover:border-gray-900 group-hover:bg-gray-900 group-hover:text-white border border-gray-300 rounded-md bg-white text-gray-600 uppercase text-[11px] lg:text-xs duration-500 transition-all ease-in font-bold tracking-wide"
                   >
                     {tech}
                   </span>
@@ -100,10 +101,11 @@ const Services = () => {
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-between w-[80%] uppercase text-xs text-gray-400 font-semibold tracking-widest">
-        <p className="">4 Services Available</p>
-        <div className="flex space-x-4 items-center text-gray-900">
-          <MdConnectWithoutContact className="size-8 animate-bounce " />
+
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-[80%] uppercase text-xs text-gray-400 font-semibold tracking-widest">
+        <p>4 Services Available</p>
+        <div className="flex space-x-3 sm:space-x-4 items-center text-gray-900">
+          <MdConnectWithoutContact className="size-7 sm:size-8 animate-bounce" />
           <BsArrowRight />
           <span>OPEN FOR WORK</span>
         </div>
