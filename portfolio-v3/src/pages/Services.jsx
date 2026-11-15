@@ -1,9 +1,84 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FiLayout, FiDatabase, FiCpu, FiShare2 } from "react-icons/fi";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { BsArrowRight } from "react-icons/bs";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header entrance (left title & right description)
+      const headerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+
+      headerTl
+        .from(".services-header-left", {
+          x: -60,
+          opacity: 0,
+          duration: 1.1,
+          ease: "power3.out",
+        })
+        .from(
+          ".services-header-right",
+          {
+            x: 60,
+            opacity: 0,
+            duration: 1.1,
+            ease: "power3.out",
+          },
+          "<0.15",
+        );
+
+      // 2. Table header & staggered service rows
+      gsap.from(".services-table-header", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".services-table",
+          start: "top 80%",
+        },
+      });
+
+      gsap.from(".service-row", {
+        y: 45,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform", // Keeps hover transitions crisp after reveal
+        scrollTrigger: {
+          trigger: ".services-table",
+          start: "top 78%",
+        },
+      });
+
+      // 3. Bottom availability bar
+      gsap.from(".services-footer", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".services-footer",
+          start: "top 92%",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const services = [
     {
       icons: <FiLayout size={36} />,
@@ -36,10 +111,13 @@ const Services = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-screen w-full max-w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden py-16 lg:py-30 relative">
+    <div
+      ref={sectionRef}
+      className="flex flex-col items-center min-h-screen w-full max-w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden py-16 lg:py-30 relative"
+    >
       <div className="flex flex-col lg:flex-row lg:items-end justify-between w-full max-w-7xl mx-auto gap-6 lg:gap-20">
         {/* Left side Header */}
-        <div className="flex-1">
+        <div className="services-header-left flex-1">
           <h1 className="uppercase text-gray-500 font-bold tracking-widest text-xs mb-4">
             My Services
           </h1>
@@ -47,7 +125,7 @@ const Services = () => {
             CORE <span className="block">CAPABILITIES</span>
           </p>
         </div>
-        <div className="flex-1 lg:max-w-md pb-2 lg:pb-4">
+        <div className="services-header-right flex-1 lg:max-w-md pb-2 lg:pb-4">
           <p className="text-sm lg:text-xs xl:text-lg font-medium text-gray-600 leading-relaxed">
             Expanding your digital footprint with specialized engineering, fluid
             interfaces, and scalable architectures designed for modern web
@@ -57,8 +135,8 @@ const Services = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:items-start justify-between w-full max-w-7xl mx-auto gap-8 lg:gap-20 mt-10 lg:mt-20 mb-8">
-        <div className="max-w-6xl mx-auto w-full text-gray-600">
-          <div className="hidden lg:grid grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300">
+        <div className="services-table max-w-6xl mx-auto w-full text-gray-600">
+          <div className="services-table-header hidden lg:grid grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300">
             <div className="p-10 text-3xl"></div>
             <div className="font-bold text-left p-10">Services</div>
             <div className="font-bold text-left p-10">Description</div>
@@ -69,7 +147,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative flex flex-col lg:grid lg:grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300 cursor-pointer overflow-hidden z-10 py-4 lg:py-0"
+              className="service-row group relative flex flex-col lg:grid lg:grid-cols-[100px_1fr_2fr_1fr] border-b border-gray-300 cursor-pointer overflow-hidden z-10 py-4 lg:py-0"
             >
               <div className="absolute inset-0 bg-gray-50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out -z-10"></div>
 
@@ -102,7 +180,7 @@ const Services = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-[80%] uppercase text-xs text-gray-400 font-semibold tracking-widest">
+      <div className="services-footer flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full lg:w-[80%] uppercase text-xs text-gray-400 font-semibold tracking-widest">
         <p>4 Services Available</p>
         <div className="flex space-x-3 sm:space-x-4 items-center text-gray-900">
           <MdConnectWithoutContact className="size-7 sm:size-8 animate-bounce" />

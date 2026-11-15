@@ -1,8 +1,64 @@
 import GithubCalendar from "@/components/GithubCalendar";
-import React from "react";
+import React, { useEffect } from "react";
 import { GoArrowUpRight } from "react-icons/go";
+import gsap from "gsap";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const Works = () => {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from("#works-header", {
+        x: -100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#works",
+          start: "top center",
+        },
+      });
+      gsap.from("#button", {
+        x: 100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#works",
+          start: "top center",
+        },
+      });
+      gsap.utils.toArray(".project-card").forEach((card, index) => {
+        const image = card.querySelector(".project-image");
+        const description = card.querySelector(".project-description");
+        const isEven = index % 2 === 0;
+
+        gsap.from(image, {
+          x: isEven ? -100 : 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+          },
+        });
+        gsap.from(description, {
+          x: isEven ? 100 : -100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+          },
+        });
+      });
+    });
+
+    return () => ctx.revert(); // Cleans up inline styles on unmount / Strict Mode re-run
+  }, []);
+
   const projects = [
     {
       image: "../images/ProjectImages/Mojito.png",
@@ -54,17 +110,26 @@ const Works = () => {
       id="works"
       className="min-h-screen w-full max-w-full mx-auto flex flex-col justify-center px-4 md:px-10 lg:px-20 overflow-hidden py-10 relative"
     >
-      <div className="flex flex-col justify-center gap-2 lg:gap-4 uppercase">
+      <div
+        id="works-header"
+        className="flex flex-col justify-center gap-2 lg:gap-4 uppercase"
+      >
         <h1 className="text-[12px] lg:text-xs font-bold text-gray-400 tracking-[0.25em]">
           Portfolio
         </h1>
-        <div className="text-5xl md:text-7xl lg:text-9xl font-bold font-display text-gray-900 tracking-tight">
+        <div
+          id="works-title"
+          className="text-5xl md:text-7xl lg:text-9xl font-bold font-display text-gray-900 tracking-tight"
+        >
           <div>SELECTED</div>
           <span>WORKS</span>
         </div>
       </div>
 
-      <div className="flex items-center justify-center lg:justify-end mt-8 lg:-mt-12 font-bold text-gray-900">
+      <div
+        id="button"
+        className="flex items-center justify-center lg:justify-end mt-8 lg:-mt-12 font-bold text-gray-900"
+      >
         <button className="flex items-center justify-center gap-2 px-6 py-4 text-xs tracking-[.25em] uppercase border border-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-500 hover:scale-105">
           View All Projects
           <GoArrowUpRight size="20" />
@@ -75,11 +140,12 @@ const Works = () => {
       <div className="flex flex-col gap-12 lg:gap-16 mt-12 max-w-7xl mx-auto w-full">
         {projects.map((project, index) => (
           <div
+            id={`project-${index}`}
             key={index}
-            className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 mt-6 lg:mt-12 max-w-7xl mx-auto w-full"
+            className="project-card grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 mt-6 lg:mt-12 max-w-7xl mx-auto w-full"
           >
             <div
-              className={`order-1 lg:col-span-3 ${
+              className={`project-image order-1 lg:col-span-3 ${
                 index % 2 === 0 ? "lg:order-1" : "lg:order-2"
               } relative`}
             >
@@ -92,7 +158,8 @@ const Works = () => {
 
             {/* Description */}
             <div
-              className={`flex flex-col justify-center order-2 lg:col-span-2 ${
+              id={`project-description-${index}`}
+              className={`flex flex-col  project-description justify-center order-2 lg:col-span-2 ${
                 index % 2 === 0 ? "lg:order-2" : "lg:order-1"
               }`}
             >
